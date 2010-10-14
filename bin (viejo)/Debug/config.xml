@@ -1,0 +1,6 @@
+<config_sokoven>
+	<mapas directorio="..\..\Mapas" prefijo="Nivel" extension=".txt"/>
+	<inteligencia_artificial grabar_log="true">
+		<log directorio="." prefijo="" extension=" AI.log"/>
+	</inteligencia_artificial>
+</config_sokoven>

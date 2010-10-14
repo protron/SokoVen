@@ -1,0 +1,40 @@
+Hacer al SokoVen:
+-----------------
+- Cada movida de la IA "debe" ser una movida a una caja, o sea que el tipito no
+  tiene sentido que se mueva si no está haciendo el camino mas corto para mover
+  una caja en cierta dirección.
+- La IA tiene que saber mover cualquier caja (aunque ella no esté al lado del
+  jugador) a una posicion contigua (solo si es posible sin tener que mover
+  ninguna otra caja), o sea que tiene que verificar si el casillero en el cual
+  quedará la caja está libre y encontrar el camino mínimo de movimientos del
+  tipito desde la posicion actual a la posición contigua a la caja desde la
+  cual deberá empujarla.
+
+- Que la IA guarde para cada estado solo la ultima movida y el estado anterior
+  y así recorriendo los estados forme la lista de movidas y no guardando tantas
+  listas de movidas como estados. Además que deje de usar la lista de movidas,
+  ya con la hastable tiene que poder recuperar esa información.
+- Archivo de log (con el nombre del mapa) de la IA con:
+  * Posiciones no validas para cajas.
+  * Tiempo de analisis.
+  * Resolucion:
+     * Tiempo.
+     * Cantidad de Movimentos.
+     * Lista de Movimientos.
+     * Cantidad de Estados recorridos.
+- Boton para resolver todos los mapas (así grabará cada log).
+- Que se muestre el Mensaje de espera para el usuario mientras trabaja la IA.
+  (tal vez un thread que se genere en el evento ENTER del FormResol)
+- Que la IA muestre de alguna forma mejor las movidas.
+- Mapas del 6 al 9 y del 13 al 40 (menos el 18).
+- Ayuda.
+
+Hacer en versión Distribuible:
+------------------------------
+- Ofuscación.
+- Instalador.
+
+Ideas para el futuro:
+---------------------
+- IA que ayude de a una movida.
+- IA que cree niveles.
