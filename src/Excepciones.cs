@@ -36,39 +36,6 @@ namespace SokoVen
     }
 
     /// <summary>
-    /// ErrorSokoVen.
-    /// </summary>
-    public class MovidaInvalida : ErrorSokoVen
-    {
-        public MovidaInvalida(string msg) : base("Movida Invalida: " + msg) { }
-        public MovidaInvalida(string msg, Exception inner)
-            : base(
-                "Movida Invalida: " + msg, inner) { }
-    }
-
-    /// <summary>
-    /// FueraDelMapa.
-    /// </summary>
-    public class FueraDelMapa : MovidaInvalida
-    {
-        private Point posicion;
-        public Point Posicion
-        {
-            get { return posicion; }
-        }
-        public FueraDelMapa(string msg, Point posicion)
-            : base(msg)
-        {
-            this.posicion = posicion;
-        }
-        public FueraDelMapa(string msg, Exception inner, Point posicion) :
-            base(msg, inner)
-        {
-            this.posicion = posicion;
-        }
-    }
-
-    /// <summary>
     /// NoExisteMovida.
     /// </summary>
     public class NoExisteMovida : ErrorSokoVen

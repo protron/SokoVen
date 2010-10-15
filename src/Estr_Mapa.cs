@@ -39,14 +39,13 @@ namespace SokoVen.Estructura
             get { return lugares.Alto; }
         }
 
-        public Point vecino(Point posicion, Direccion direccion)
+        public bool vecino(out Point nuevaPos, Point posicion, Direccion direccion)
         {
-            Point nuevaPos = posicion + direccion.Desp;
+            nuevaPos = posicion + direccion.Desp;
             if (nuevaPos.X < 0 || nuevaPos.X >= lugares.Ancho ||
                 nuevaPos.Y < 0 || nuevaPos.Y >= lugares.Alto)
             {
-                string msg = "El mapa no tiene posición " + nuevaPos;
-                throw new FueraDelMapa(msg, nuevaPos);
+                return false;
             }
             /*try {
               Lugar l = lugares[nuevaPos]; //prueba que no esté fuera de rango
@@ -54,7 +53,7 @@ namespace SokoVen.Estructura
               string msg = "El mapa no tiene posición " + nuevaPos;
               throw new FueraDelMapa(msg, e, nuevaPos);
             }*/
-            return nuevaPos;
+            return true;
         }
     }
 }

@@ -347,18 +347,13 @@ namespace SokoVen.Vista
 
         private void moverTipito(Direccion direccion)
         {
-            try
-            {
-                Movida movida = Movida.crear(mapa.EstadoActual, direccion);
-                listaMovidas.Push(movida);
-                mapa.EstadoActual.realizarMovida(movida);
-                dibujaMapa.dibujaMovida(mapa, movida);
-                this.labelMovidas.Text = listaMovidas.Count.ToString();
-            }
-            catch (MovidaInvalida)
-            {
+            Movida movida;
+            if (!Movida.crear(out movida, mapa.EstadoActual, direccion))
                 return;
-            }
+            listaMovidas.Push(movida);
+            mapa.EstadoActual.realizarMovida(movida);
+            dibujaMapa.dibujaMovida(mapa, movida);
+            this.labelMovidas.Text = listaMovidas.Count.ToString();
             if (mapa.EstadoActual.MapaTerminado())
             {
                 MessageBox.Show("Mapa Completo!", "Felicitaciones!",

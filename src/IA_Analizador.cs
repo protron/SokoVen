@@ -90,15 +90,10 @@ namespace SokoVen.IA
 
         public bool tieneVecinoPasable(Point posicion, Direccion direccion)
         {
-            try
-            {
-                Point posVecina = mapa.vecino(posicion, direccion);
-                return mapa.Lugares[posVecina] != Lugar.Pared;
-            }
-            catch (FueraDelMapa)
-            {
+            Point posVecina;
+            if (!mapa.vecino(out posVecina, posicion, direccion))
                 return false;
-            }
+            return mapa.Lugares[posVecina] != Lugar.Pared;
         }
 
         private void inicializaEmparedadas()

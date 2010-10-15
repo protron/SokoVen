@@ -51,14 +51,8 @@ namespace SokoVen.IA
                     {
                         Direccion direccion = Direccion.todas[nDir];
                         Movida movida;
-                        try
-                        {
-                            movida = Movida.crear(estadoActual, direccion);
-                        }
-                        catch (MovidaInvalida)
-                        {
+                        if (!Movida.crear(out movida, estadoActual, direccion))
                             continue;
-                        }
                         Estado estadoProximo = (Estado)estadoActual.Clone();
                         estadoProximo.realizarMovida(movida);
                         /*

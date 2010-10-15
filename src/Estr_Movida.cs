@@ -6,7 +6,7 @@ namespace SokoVen.Estructura
     /// <summary>
     /// Movida: guarda la información para generar y retroceder una movida.
     /// </summary>
-    public class Movida
+    public class  Movida
     {
         private Movida() { }
         internal Movida(TipoObjeto tipoOb, Direccion dir, Point posI, Point posF)
@@ -17,21 +17,25 @@ namespace SokoVen.Estructura
             this.posFinal = posF;
         }
 
-        public static Movida crear(Estado estado, Direccion direccion)
+        public static bool crear(out Movida movida, Estado estado, Direccion direccion)
         {
-            Point posDest = estado.Mapa.vecino(estado.PosTipito, direccion);
-            Movida movida = new Movida(TipoObjeto.Tipito, direccion, estado.PosTipito,
-              posDest);
+            movida = null;
+            Point posDest;
+            if (!estado.Mapa.vecino(out posDest, estado.PosTipito, direccion))
+                return false;
+            movida = new Movida(TipoObjeto.Tipito, direccion, estado.PosTipito, posDest);
             if (!estado.pasable(posDest))
             {
                 if (!estado.MatrizCajas[posDest])
-                    throw new MovidaInvalida("Choque contra objeto no movible");
-                movida.SubMovida = new Movida(TipoObjeto.Caja, direccion, posDest,
-                  estado.Mapa.vecino(posDest, direccion));
+                    return false;
+                Point posFinal;
+                if (!estado.Mapa.vecino(out posFinal, posDest, direccion))
+                    return false;
+                movida.SubMovida = new Movida(TipoObjeto.Caja, direccion, posDest, posFinal);
                 if (!estado.pasable(movida.SubMovida.PosFinal))
-                    throw new MovidaInvalida("Choque contra caja bloqueda");
+                    return false;
             }
-            return movida;
+            return true;
         }
 
         public static Movida crearDeshacedora(Movida original)
