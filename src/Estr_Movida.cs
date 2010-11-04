@@ -92,65 +92,12 @@ namespace SokoVen.Estructura
 
         public IEnumerable PosAfectadas
         {
-            get { return new ColPosAfectadas(this); }
-        }
-
-        /// <summary>
-        /// ColPosAfectadas: Objeto enumerable de las posiciones afectadas por la
-        ///                  movida.
-        /// </summary>
-        private class ColPosAfectadas : IEnumerable
-        {
-            private Movida movida;
-            public ColPosAfectadas(Movida movida)
+            get
             {
-                this.movida = movida;
-            }
-            public IEnumerator GetEnumerator()
-            {
-                return new EnumPosAf(movida);
-            }
-        }
-
-        /// <summary>
-        /// EnumPosAf: Enumerador de las posiciones afectadas por la movida.
-        /// </summary>
-        private class EnumPosAf : IEnumerator
-        {
-            Movida movida;
-            int cantidad;
-            int nIndex;
-
-            public EnumPosAf(Movida movida)
-            {
-                this.movida = movida;
-                cantidad = movida.SubMovida == null ? 1 : 2;
-                Reset();
-            }
-
-            public void Reset()
-            {
-                nIndex = -1;
-            }
-
-            public bool MoveNext()
-            {
-                nIndex++;
-                return nIndex <= cantidad;
-            }
-
-            object IEnumerator.Current
-            {
-                get
-                {
-                    switch (nIndex)
-                    {
-                        case 0: return movida.PosInicial;
-                        case 1: return movida.PosFinal;
-                        case 2: return movida.SubMovida.PosFinal;
-                        default: return null;
-                    }
-                }
+                yield return posInicial;
+                yield return posFinal;
+                if (subMovida != null)
+                    yield return subMovida.PosFinal;
             }
         }
     }
