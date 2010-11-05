@@ -8,7 +8,7 @@ namespace SokoVen.Estructura
     /// MatrizCajas: representa a una matriz con un bool en cada casilla del mapa.
     /// Ese bool representa si hay o no una caja esa posicion del mapa.
     /// </summary>
-    public class MatrizCajas : IEnumerable, ICloneable
+    public class MatrizCajas : IEnumerable, ICloneable, IEquatable<MatrizCajas>
     {
         public MatrizCajas(byte ancho, byte alto)
         {
@@ -41,23 +41,46 @@ namespace SokoVen.Estructura
             return vector.GetEnumerator();
         }
 
+        private static int[] GetArrayIterable(BitArray bitArray)
+        {
+            int bits = (bitArray.Length + 0x1f) / 0x20;
+            int[] arr = new int[bits];
+            bitArray.CopyTo(arr, 0);
+            return arr;
+        }
+
         public override bool Equals(Object obj)
         {
             if (this.GetType() != obj.GetType())
                 return false;
             MatrizCajas elOtro = (MatrizCajas)obj;
-            for (int i = 0; i < this.vector.Length; i++)
+            return this.Equals(elOtro);
+        }
+
+        public bool Equals(MatrizCajas elOtro)
+        {
+            int[] miVector = GetArrayIterable(this.vector);
+            int[] otroVector = GetArrayIterable(elOtro.vector);
+            for (int i = 0; i < miVector.Length; i++)
             {
-                if (this.vector[i] != elOtro.vector[i])
+                if (miVector[i] != otroVector[i])
                     return false;
             }
             return true;
-            //      return this.vector.Equals(elOtro.vector);
         }
 
         public override int GetHashCode()
         {
-            return vector.GetHashCode();
+            int[] miVector = GetArrayIterable(this.vector);
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                foreach (int a in miVector)
+                {
+                    hash = hash * 23 + a.GetHashCode();
+                }
+                return hash;
+            }
         }
 
         public Object Clone()

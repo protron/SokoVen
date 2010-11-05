@@ -31,7 +31,7 @@ namespace SokoVen.Estructura
         public Lugares(byte ancho, byte alto)
         {
             area = new Lugar[ancho, alto];
-            posDestinos = new ArrayList();
+            posDestinos = new ArrayList(this.Count);
         }
 
         private Lugar[,] area;
@@ -60,6 +60,11 @@ namespace SokoVen.Estructura
         public byte Alto
         {
             get { return (byte)area.GetLength(1); }
+        }
+
+        public int Count
+        {
+            get { return area.Length; }
         }
     }
 }

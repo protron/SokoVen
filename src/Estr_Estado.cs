@@ -129,7 +129,14 @@ namespace SokoVen.Estructura
 
         public override int GetHashCode()
         {
-            return ((posTipito.Y << 24) + (posTipito.X << 16)) ^ matrizCajas.GetHashCode();
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                hash = hash * 23 + posTipito.Y.GetHashCode();
+                hash = hash * 23 + posTipito.X.GetHashCode();
+                hash = hash * 23 + matrizCajas.GetHashCode();
+                return hash;
+            }
         }
 
         public Object Clone()

@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 
 namespace SokoVen.IO
@@ -5,7 +6,7 @@ namespace SokoVen.IO
     /// <summary>
     /// IALogger.
     /// </summary>
-    public class IALogger
+    public class IALogger : IDisposable
     {
         private EventLog log = null;
 
@@ -24,6 +25,11 @@ namespace SokoVen.IO
         {
             if (log != null)
                 log.Close();
+        }
+
+        public void Dispose()
+        {
+            this.Close();
         }
     }
 }

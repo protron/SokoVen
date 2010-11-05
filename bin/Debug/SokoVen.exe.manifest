@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="SokoVen.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="es-AR" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="SokoVen" version="1.0.3939.38930" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="SokoVen" version="1.0.3960.35448" language="neutral" processorArchitecture="msil" />
     <commandLine file="SokoVen.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -57,14 +57,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SokoVen.exe" size="65536">
-      <assemblyIdentity name="SokoVen" version="1.0.3939.38930" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SokoVen.exe" size="66560">
+      <assemblyIdentity name="SokoVen" version="1.0.3960.35448" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Lj09hRRE4VnSFgLuLhIMaNwFME8=</dsig:DigestValue>
+        <dsig:DigestValue>+758e/wGAwdCO19lcutDGC5qpUI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
